@@ -1,1 +1,2 @@
-
+def myFunc():
+  print('hi')
