@@ -45,15 +45,14 @@ alt="Sets of Distance Correlation Coefficients">
 <p align="center"><sub> SOURCE: https://commons.wikimedia.org/wiki/File:Distance_Correlation_Examples.svg</sub></p>
 
 The numerator is the distance covariance. The first step in calculating this covariance is to derive a matrix for each variable containing the [pairwise distances](https://en.wikipedia.org/wiki/Distance_matrix "Wikipedia: Pairwise Distances") for that variable. For the purposes of calculating the distance covariance, we use the [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance "Wikipedia: Euclidean Distance"). If we were exploring two-dimensional observations (for example, on the Cartesian plane) the appropriate formulation of the Euclidean distance would be as follows: 
-
+<br>
 <div align="center">
 <img src="https://github.com/b-knight/StatExplore/blob/master/images/Two_Dimensional_Euclidean_Distance.gif?sanitize=true",
 align="middle", 
 alt="Euclidean Distance: Two Dimensions">
 </div>
-
-However, in the example below *X* and *Y* are each univariate, and so the Euclidean distance reduces to the absolute value of distances.  
-
+<br>
+However, in the example below *X* and *Y* are each univariate, and so the Euclidean distance reduces to the absolute value of the differences between observations.  
 <div align="center">
 <img src="https://github.com/b-knight/StatExplore/blob/master/images/Unidimensional_Euclidean_Distance.gif?sanitize=true",
 align="middle", 
@@ -68,7 +67,7 @@ alt="Euclidean Distance: Unidimensional">
 align="middle", 
 alt="Pairwise Distances">
 </div>
-<p align="center"><sub><b>Image 3: Specification of Pairwise Distances</b></sub></p>
+
 
 For example, if our raw data was as follows: 
 
@@ -88,13 +87,14 @@ For example, if our raw data was as follows:
 
 <tr><td>
 
-| X  | A  | B  | C  | D  | E  |
-| -- | -- | -- | -- | -- | -- |
-| A  | 0  | 1  | 2  | 3  | 4  |
-| B  | 1  | 0  | 1  | 2  | 3 |
-| C  | 2  | 1  | 0  | 1  | 2  |
-| D  | 3  | 2  | 1  | 0  | 1  |
-| E  | 4  | 3  | 2  | 1  | 0  |
+| X               | A  | B  | C  | D  | E  | Row<br>Mean |
+| --              | -- | -- | -- | -- | -- | ------------ |
+| A               | 0  | 1  | 2  | 3  | 4  | 2            |
+| B               | 1  | 0  | 1  | 2  | 3  | 1.4          |
+| C               | 2  | 1  | 0  | 1  | 2  | 1.2          |
+| D               | 3  | 2  | 1  | 0  | 1  | 1.4          |
+| E               | 4  | 3  | 2  | 1  | 0  | 2            |
+| Column<br>Mean  | 2  | 1.4|1.2 |1.4 | 2  | Grand<br>Mean = 2.24            |
 
 </td><td>
 
