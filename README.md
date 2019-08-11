@@ -44,7 +44,25 @@ alt="Sets of Distance Correlation Coefficients">
 <p align="center"><sub><b>Image 2: Sets of Distance Correlation Coefficients</b></sub></p>
 <p align="center"><sub> SOURCE: https://commons.wikimedia.org/wiki/File:Distance_Correlation_Examples.svg</sub></p>
 
-The numerator is the distance covariance. The first step in calculating this covariance is to derive a matrix for each variable containing the [pairwise distances](https://en.wikipedia.org/wiki/Distance_matrix "Wikipedia: Pairwise Distances") for that variable. 
+The numerator is the distance covariance. The first step in calculating this covariance is to derive a matrix for each variable containing the [pairwise distances](https://en.wikipedia.org/wiki/Distance_matrix "Wikipedia: Pairwise Distances") for that variable. For the purposes of calculating the distance covariance, we use the [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance "Wikipedia: Euclidean Distance"). If we were exploring two-dimensional observations (for example, on the Cartesian plane) the appropriate formulation of the Euclidean distance would be as follows: 
+
+<div align="center">
+<img src="https://github.com/b-knight/StatExplore/blob/master/images/Two_Dimensional_Euclidean_Distance.gif?sanitize=true",
+align="middle", 
+alt="Euclidean Distance: Two Dimensions">
+</div>
+
+However, in the example below *X* and *Y* are each univariate, and so the Euclidean distance reduces to the absolute value of distances.  
+
+<div align="center">
+<img src="https://github.com/b-knight/StatExplore/blob/master/images/https://github.com/b-knight/StatExplore/delete/master/images/Unidimensional_Euclidean_Distance.gif?sanitize=true",
+align="middle", 
+alt="Euclidean Distance: Unidimensional">
+</div>
+
+
+
+
 <div align="center">
 <img src="https://github.com/b-knight/StatExplore/blob/master/images/Pairwise_Distances.gif?sanitize=true",
 align="middle", 
@@ -63,7 +81,7 @@ For example, if our raw data was as follows:
 | E  | 4  | 2  |
 <p align="center"><sub><b>Table 1: Raw Data</b></sub></p>
 
-...then 
+...then the respective pair-wise distances would be as follows: 
 
 <table>
 <tr><th> X Pair-Wise Distances </th><th> Y Pair-Wise Distances </th></tr>
@@ -72,20 +90,20 @@ For example, if our raw data was as follows:
 
 | X  | A  | B  | C  | D  | E  |
 | -- | -- | -- | -- | -- | -- |
-| A  | 0  | -  | -  | -  | -  |
-| B  | 1  | 0  | -  | -  | -  |
-| C  | 2  | 1  | 0  | -  | -  |
-| D  | 3  | 2  | 1  | 0  | -  |
+| A  | 0  | 1  | 2  | 3  | 4  |
+| B  | 1  | 0  | 1  | 2  | 3 |
+| C  | 2  | 1  | 0  | 1  | 2  |
+| D  | 3  | 2  | 1  | 0  | 1  |
 | E  | 4  | 3  | 2  | 1  | 0  |
 
 </td><td>
 
 | Y  | A  | B  | C  | D  | E  |
 | -- | -- | -- | -- | -- | -- |
-| A  | 0  | -  | -  | -  | -  |
-| B  | 1  | 0  | -  | -  | -  |
-| C  | 2  | 1  | 0  | -  | -  |
-| D  | 1  | 0  | 1  | 0  | -  |
+| A  | 0  | 1  | 2  | 1  | 0  |
+| B  | 1  | 0  | 1  | 0  | 1  |
+| C  | 2  | 1  | 0  | 1  | 2  |
+| D  | 1  | 0  | 1  | 0  | 1  |
 | E  | 0  | 1  | 2  | 1  | 0  |
 
 </td></tr> </table>
