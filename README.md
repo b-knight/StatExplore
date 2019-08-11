@@ -13,6 +13,9 @@ alt="Pearson Product-Moment Correlation Coefficien">
 <p align="center"><sub><b>Equation 1: Pearson Product-Moment Correlation Coefficient</sub></b></p>
 
 
+
+
+
 <div align="center">
 <img 
 src="https://github.com/b-knight/StatExplore/blob/master/images/Correlation_Examples.png?sanitize=true", 
@@ -41,7 +44,46 @@ alt="Sets of Distance Correlation Coefficients">
 <p align="center"><sub><b>Image 2: Sets of Distance Correlation Coefficients</b></sub></p>
 <p align="center"><sub> SOURCE: https://commons.wikimedia.org/wiki/File:Distance_Correlation_Examples.svg</sub></p>
 
-<p align="center"> X = [0, 1, 2, 3, 4] </p>
-<p align="center"> Y = [2, 1, 0, 2, 1] </p>
+The numerator is the distance covariance. The first step in calculating 
+
+|    | X  | Y  |
+| -- | -- | -- |
+| A  | 0  | 2  |
+| B  | 1  | 1  |
+| C  | 2  | 0  |
+| D  | 3  | 1  |
+| E  | 4  | 2  |
+<p align="center"><sub><b>Table 1: Raw Data</b></sub></p>
+
+
+<table>
+<tr><th> X Pair-Wise Distances </th><th> Y Pair-Wise Distances </th></tr>
+
+<tr><td>
+
+| X  | A  | B  | C  | D  | E  |
+| -- | -- | -- | -- | -- | -- |
+| A  | 0  | -  | -  | -  | -  |
+| B  | 1  | 0  | -  | -  | -  |
+| C  | 2  | 1  | 0  | -  | -  |
+| D  | 3  | 2  | 1  | 0  | -  |
+| E  | 4  | 3  | 2  | 1  | 0  |
+
+</td><td>
+
+| Y  | A  | B  | C  | D  | E  |
+| -- | -- | -- | -- | -- | -- |
+| A  | 0  | -  | -  | -  | -  |
+| B  | 1  | 0  | -  | -  | -  |
+| C  | 2  | 1  | 0  | -  | -  |
+| D  | 1  | 0  | 1  | 0  | -  |
+| E  | 0  | 1  | 2  | 1  | 0  |
+
+</td></tr> </table>
+<p align="center"><sub><b>Tables 2 & 3: Pair-Wise Distances</b></sub></p>
+
+### References
+* Huo, Xiaoming, Gábor J. Székely, and Alfréd Rényi, “Fast Computing for Distance Covariance”,  
+eprint arXiv:1410.1503, October 2014, https://arxiv.org/abs/1410.1503.
 
 
