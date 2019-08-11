@@ -56,7 +56,7 @@ alt="Pairwise Distances">
 </div>
 
 
-For example, let's create some data:
+For example, let's create some data using R:
 
 ```R
 x = c(0, 1, 2, 3, 4) 
@@ -70,7 +70,7 @@ y = c(2, 1, 0, 1, 2)
 | C  | 2  | 0  |
 | D  | 3  | 1  |
 | E  | 4  | 2  |
-<p align="center"><sub><b>Table 1: Raw Data</b></sub></p>
+<p align="left"><sub><b>Table 1: Raw Data</b></sub></p>
 
 Next, we derive a matrix for each variable containing the [pairwise distances](https://en.wikipedia.org/wiki/Distance_matrix "Wikipedia: Pairwise Distances") for that variable. For the purposes of calculating the distance covariance, we use the [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance "Wikipedia: Euclidean Distance"). If we were exploring two-dimensional observations (for example, on the Cartesian plane) the appropriate formulation of the Euclidean distance would be as follows: 
 
@@ -92,19 +92,50 @@ alt="Euclidean Distance: Unidimensional">
 </div>
 <br>
 
+This can be done in R by calling the 'dist' method and specifying "euclidean" as the distance.
+```R
+x_mat <- dist(x, method = "euclidean", diag = TRUE, upper = TRUE, p = 2)
+y_mat <- dist(y, method = "euclidean", diag = TRUE, upper = TRUE, p = 2)
+```
+We will also need the column and row means from these distance matrices, as well as the grand mean of those means. If you were to derive these manually, you might use a function like the following:
+```
+take_doubly_centered_distances <- function(x_mat) {
+    library(reshape2)
+    x_df               <- melt(as.matrix(x_mat), 
+                          varnames = c("row", "col"))
+    
+    x_row_means        <- aggregate(x_df, list(x_df$row), mean)
+    x_row_means        <- subset(x_row_means, select = -c(Group.1, col))
+    names(x_row_means) <- c("row", "row_mean")
+    x_df               <- merge(x=x_df, y=x_row_means, by="row")
+    
+    x_col_means        <- aggregate(x_df, list(x_df$col), mean)
+    x_col_means        <- subset(x_col_means, select = 
+                               -c(Group.1, row, row_mean))
+    names(x_col_means) <- c("col", "col_mean")
+    x_df               <- merge(x=x_df, y=x_col_means, by="col")
+    
+    x_df$grand_mean    <- mean(c(x_row_means$row_mean, 
+                               x_col_means$col_mean)) 
+    x_df$X             <- x_df$value - x_df$row_mean - 
+                          x_df$col_mean + x_df$grand_mean 
+    return(x_df)
+    }
+```
+..resulting in the following:
 <table>
 <tr><th> X Pair-Wise Distances </th><th> Y Pair-Wise Distances </th></tr>
 
 <tr><td>
 
-| X               | A  | B  | C  | D  | E  | Row<br>Mean       |
-| --              | -- | -- | -- | -- | -- | ----------------- |
-| A               | 0  | 1  | 2  | 3  | 4  | 2                 |
-| B               | 1  | 0  | 1  | 2  | 3  | 1.4               |
-| C               | 2  | 1  | 0  | 1  | 2  | 1.2               |
-| D               | 3  | 2  | 1  | 0  | 1  | 1.4               |
-| E               | 4  | 3  | 2  | 1  | 0  | 2                 |
-| Column<br>Mean  | 2  | 1.4|1.2 |1.4 | 2  | Grand<br>Mean = 2 |
+| X               | A  | B  | C  | D  | E  | Row<br>Mean         |
+| --              | -- | -- | -- | -- | -- | ------------------- |
+| A               | 0  | 1  | 2  | 3  | 4  | 2                   |
+| B               | 1  | 0  | 1  | 2  | 3  | 1.4                 |
+| C               | 2  | 1  | 0  | 1  | 2  | 1.2                 |
+| D               | 3  | 2  | 1  | 0  | 1  | 1.4                 |
+| E               | 4  | 3  | 2  | 1  | 0  | 2                   |
+| Column<br>Mean  | 2  | 1.4|1.2 |1.4 | 2  | Grand<br>Mean = 1.6 |
 
 </td><td>
 
@@ -119,8 +150,46 @@ alt="Euclidean Distance: Unidimensional">
 
 </td></tr> </table>
 <p align="center"><sub><b>Tables 2 & 3: Pair-Wise Distances</b></sub></p>
+We need to doubly center these distance matrices - doubly in this context means we will first subtract from each element its row mean, and secondly subtract its column mean before adding to each element the grand mean. 
+
+<br>
+<div align="center">
+<img 
+src="https://github.com/b-knight/StatExplore/blob/master/images/Doubly_Centered_Distances.gif?sanitize=true", 
+align="middle",
+alt="Doubly Centered Distances">
+</div>
+<br>
 
 The resulting matrices should have all rows and all columns sum to zero.
+
+<table>
+<tr><th> Doubly Centered Distances </th></tr>
+
+<tr><td>
+
+| X               | A    | B    | C    | D    | E    | Row<br>Sum  |
+| --              | ---- | ---- | ---- | ---- | ---  | ----------- |
+| A               | -2.4 | -0.8 | 0.4  | 1.2  | 1.6  | 0           |
+| B               | -0.8 | -1.2 | 0    | 0.8  | 1.2  | 0           |
+| C               | 0.4  | 0    | -0.8 | 0    | 0.4  | 0           |
+| D               | 1.2  | 0.8  | 0    | -1.2 | -0.8 | 0           |
+| E               | 1.6  | 1.2  | 0.4  | -0.8 | -2.4 | 0           |
+| Column<br>Sum   | 0    | 0    | 0    | 0    | 0    |             |
+
+</td><td>
+
+| Y               | A    | B    | C    | D    | E    | Row<br>Sum  |
+| --              | ---- | ---- | ---- | ---- | ---- | ----------- |
+| A               | -0.8 | 0.4  | 0.8  | 0.4  | -0.8 | 0           |
+| B               | 0.4  | -0.4 | 0    | -0.4 | 0.4  | 0           |
+| C               | 0.8  | 0    | -1.6 | 0    | 0.8  | 0           |
+| D               | 0.4  | -0.4 | 0    | -0.4 | 0.4  | 0           |
+| E               | -0.8 | 0.4  | 0.8  | 0.4  | -0.8 | 0           |
+| Column<br>Sum   | 0    | 0    | 0    | 0    | 0    |             |
+
+</td></tr> </table>
+<p align="center"><sub><b>Tables 4 & 5: Distance Matrices After Doubly Centering</b></sub></p>
 
 
 ### References
