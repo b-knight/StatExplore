@@ -1,8 +1,5 @@
-# StatExplore
-A Python Package to Facilitate Statistical Research
-
 ## Distance Correlation
-In statistics, the Pearson product-moment correlation coefficient (or simply "the correlation coefficient") is a standard measure of the extent *and direction* to which two variables move together. Ranging from [-1,1] where 1 implies perfect correlation and -1 implies perfect inverse correlation, this statistic encapsulates the ratio between two variables' covariance (the numerator) and the product of their variances (the denominator).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In statistics, the Pearson product-moment correlation coefficient (or simply "the correlation coefficient") is a standard measure of the extent *and direction* to which two variables move together. Ranging from [-1,1] where 1 implies perfect correlation and -1 implies perfect inverse correlation, this statistic encapsulates the ratio between two variables' covariance (the numerator) and the product of their variances (the denominator).
 
 <div align="center">
 <img 
@@ -12,12 +9,9 @@ alt="Pearson Product-Moment Correlation Coefficient">
 </div>
 <p align="center"><sub><b>Equation 1: Pearson Product-Moment Correlation Coefficient</sub></b></p>
 
-An underlying assumption of this statistic is that the underlying relationship between these two statistics is *linear*. However, this assumption of linearity is often not borne out in reality. Imagine we are assessing the relationship between the amount of money spent on ads targeting visitors of a given website, and the rate of conversion from visitor to paying customer. We could easyily imagine a scenario where, up to a certain point more resources spent on ads increases conversion. However, there may come a point where the prevalence of ads is so great from the consumer's perspective that it is actually offputting, accomplishing the opposite of its intended purpose. This scenario is not theoretical, but has been validated by [survey data](https://www.cmswire.com/cms/customer-experience/too-much-online-advertising-may-turn-consumers-off-survey-finds-014707.php, "Too Much Online Advertising May Turn Consumers Off, Survey Finds"). 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; An key assumption of this statistic is that the underlying relationship between these two statistics is *linear*. However, this assumption of linearity is often not borne out in reality. Imagine we are assessing the relationship between the amount of money spent on ads targeting visitors of a given website, and the rate of conversion from visitor to paying customer. We could easyily imagine a scenario where up to a certain point, more resources spent on ads tends to increase conversion. However, there may come a point where the prevalence of ads is so great that it is actually offputting to the consumer, accomplishing the opposite of its intended purpose. This scenario is not theoretical, but has been validated by [survey data](https://www.cmswire.com/cms/customer-experience/too-much-online-advertising-may-turn-consumers-off-survey-finds-014707.php, "Too Much Online Advertising May Turn Consumers Off, Survey Finds"). The implication is that while ad spend may relate intimately to conversion, the correlation coefficient between these two variables is likley to be small - to the point of approaching zero. <br>
 
-
-
-
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The scatterplots below illustrate how, when the relationship between two variables involves a change in direction, the Pearson Product-Moment Correlation Coefficient fails to report the true degree of dependence between variables. 
 <div align="center">
 <img 
 src="https://github.com/b-knight/StatExplore/blob/master/images/Correlation_Examples.png?sanitize=true", 
@@ -27,12 +21,13 @@ alt="Sets of Pearson Correlation Coefficients">
 <p align="center"><sub><b>Image 1: Sets of Pearson Correlation Coefficients </b></sub></p>
 <p align="center"><sub> SOURCE: https://commons.wikimedia.org/wiki/File:Correlation_examples2.svg </sub></p>
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In 2007, Gábor J. Székely called attention to this important limitation of the correlation coefficient and introduced the concept of 'distance correlation' as part of his conception of '[E-statistics](https://en.wikipedia.org/wiki/Energy_distance, E-statistics)' - statistics concerning the energy distance between probability distributions. Within the framework of E-statistics, Székely re-formulated many classical statistical concepts, such as 'distance variance' versus variance, 'distance standard deviation' versus standard deviation, and 'distance covariance' versus covariance. Using these, the definition of correlation coefficient can be re-written, but in such a way that a value of zero occurs if, and only if the two variables are genuinely independent.
 
 <div align="center">
 <img 
 src="https://github.com/b-knight/StatExplore/blob/master/images/Distance_Correlation.gif?sanitize=true", 
 align="middle",
-alt="Pearson Product-Moment Correlation Coefficien">
+alt="Distance Correlation">
 </div>
 <p align="center"><sub><b>Equation 2: Distance Correlation</sub></b></p>
 
@@ -223,11 +218,15 @@ sample estimates:
     dCov 
     0.438178 
 ```
-
+#### Calculating the Distance Standard Deviations
 
 ### References
+* Björn Böttcher, Martin Keller-Ressel, René L. Schilling. (2019), Distance multivariance: New Dependence Measures for Random Vectors, The Annals of Statistics, Vol. 47, No. 5, pp.2757-2789. https://projecteuclid.org/euclid.aos/1564797863
+
 * Szekely, G.J., Rizzo, M.L., and Bakirov, N.K. (2007), Measuring and Testing Dependence by Correlation of Distances, Annals of Statistics, Vol. 35 No. 6, pp. 2769-2794. http://dx.doi.org/10.1214/009053607000000505
 
 * Szekely, G.J. and Rizzo, M.L. (2009), Brownian Distance Covariance, Annals of Applied Statistics, Vol. 3, No. 4, 1236-1265. http://dx.doi.org/10.1214/09-AOAS312
 
-* Szekely, G.J. and Rizzo, M.L. (2009), Rejoinder: Brownian Distance Covariance, Annals of Applied Statistics, Vol. 3, No. 4, 1303-1308.
+* Szekely, G.J. and Rizzo, M.L. (2009), Rejoinder: Brownian Distance Covariance, Annals of Applied Statistics, Vol. 3, No. 4, 1303-1308. https://projecteuclid.org/euclid.aoas/1267453941
+
+
