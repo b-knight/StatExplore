@@ -63,15 +63,6 @@ x = c(0, 1, 2, 3, 4)
 y = c(2, 1, 0, 1, 2) 
 ```
 
-|    | X  | Y  |
-| -- | -- | -- |
-| A  | 0  | 2  |
-| B  | 1  | 1  |
-| C  | 2  | 0  |
-| D  | 3  | 1  |
-| E  | 4  | 2  |
-<p align="left"><sub><b>Table 1: Raw Data</b></sub></p>
-
 Next, we derive a matrix for each variable containing the [pairwise distances](https://en.wikipedia.org/wiki/Distance_matrix "Wikipedia: Pairwise Distances") for that variable. For the purposes of calculating the distance covariance, we use the [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance "Wikipedia: Euclidean Distance"). If we were exploring two-dimensional observations (for example, on the Cartesian plane) the appropriate formulation of the Euclidean distance would be as follows: 
 
 <br>
@@ -101,24 +92,17 @@ We will also need the column and row means from these distance matrices, as well
 ```
 take_doubly_centered_distances <- function(x_mat) {
     library(reshape2)
-    x_df               <- melt(as.matrix(x_mat), 
-                          varnames = c("row", "col"))
-    
+    x_df               <- melt(as.matrix(x_mat), varnames = c("row", "col")) 
     x_row_means        <- aggregate(x_df, list(x_df$row), mean)
     x_row_means        <- subset(x_row_means, select = -c(Group.1, col))
     names(x_row_means) <- c("row", "row_mean")
     x_df               <- merge(x=x_df, y=x_row_means, by="row")
-    
     x_col_means        <- aggregate(x_df, list(x_df$col), mean)
-    x_col_means        <- subset(x_col_means, select = 
-                               -c(Group.1, row, row_mean))
+    x_col_means        <- subset(x_col_means, select = -c(Group.1, row, row_mean))
     names(x_col_means) <- c("col", "col_mean")
     x_df               <- merge(x=x_df, y=x_col_means, by="col")
-    
-    x_df$grand_mean    <- mean(c(x_row_means$row_mean, 
-                               x_col_means$col_mean)) 
-    x_df$X             <- x_df$value - x_df$row_mean - 
-                          x_df$col_mean + x_df$grand_mean 
+    x_df$grand_mean    <- mean(c(x_row_means$row_mean, x_col_means$col_mean)) 
+    x_df$X             <- x_df$value - x_df$row_mean - x_df$col_mean + x_df$grand_mean 
     return(x_df)
     }
 ```
@@ -149,7 +133,7 @@ take_doubly_centered_distances <- function(x_mat) {
 | Column<br>Mean  | 0.8  | 0.6 |1.2 |0.6 | 0.8 | Grand<br>Mean = 0.8  |
 
 </td></tr> </table>
-<p align="center"><sub><b>Tables 2 & 3: Pair-Wise Distances</b></sub></p>
+<p align="center"><sub><b>Tables 1 & 2: Pair-Wise Distances</b></sub></p>
 We need to doubly center these distance matrices - doubly in this context means we will first subtract from each element its row mean, and secondly subtract its column mean before adding to each element the grand mean. 
 
 <br>
@@ -190,7 +174,7 @@ The resulting matrices should have all rows and all columns sum to zero.
 | <sub>Column<br>Sum</sub> | 0    | 0    | 0    | 0    | 0    |                        |
 
 </td></tr> </table>
-<p align="center"><sub><b>Tables 4 & 5: Distance Matrices After Doubly Centering</b></sub></p>
+<p align="center"><sub><b>Tables 3 & 4: Distance Matrices After Doubly Centering</b></sub></p>
 
 
 ### References
