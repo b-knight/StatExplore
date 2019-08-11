@@ -44,7 +44,15 @@ alt="Sets of Distance Correlation Coefficients">
 <p align="center"><sub><b>Image 2: Sets of Distance Correlation Coefficients</b></sub></p>
 <p align="center"><sub> SOURCE: https://commons.wikimedia.org/wiki/File:Distance_Correlation_Examples.svg</sub></p>
 
-The numerator is the distance covariance. The first step in calculating 
+The numerator is the distance covariance. The first step in calculating this covariance is to derive a matrix for each variable containing the [pairwise distances](https://en.wikipedia.org/wiki/Distance_matrix "Wikipedia: Pairwise Distances") for that variable. 
+<div align="center">
+<img src="https://github.com/b-knight/StatExplore/blob/master/images/Pairwise_Distances.gif?sanitize=true",
+align="middle", 
+alt="Pairwise Distances">
+</div>
+<p align="center"><sub><b>Image 3: Specification of Pairwise Distances</b></sub></p>
+
+For example, if our raw data was as follows: 
 
 |    | X  | Y  |
 | -- | -- | -- |
@@ -55,6 +63,7 @@ The numerator is the distance covariance. The first step in calculating
 | E  | 4  | 2  |
 <p align="center"><sub><b>Table 1: Raw Data</b></sub></p>
 
+...then 
 
 <table>
 <tr><th> X Pair-Wise Distances </th><th> Y Pair-Wise Distances </th></tr>
