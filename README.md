@@ -2,15 +2,17 @@
 A Python Package to Facilitate Statistical Research
 
 ## Distance Correlation
-
+In statistics, the Pearson product-moment correlation coefficient (or simply "the correlation coefficient") is a standard measure of the extent *and direction* to which two variables move together. Ranging from [-1,1] where 1 implies perfect correlation and -1 implies perfect inverse correlation, this statistic encapsulates the ratio between two variables' covariance (the numerator) and the product of their variances (the denominator).
 
 <div align="center">
 <img 
 src="https://github.com/b-knight/StatExplore/blob/master/images/Pearsons_Correlation_Coefficient.gif?sanitize=true", 
 align="middle",
-alt="Pearson Product-Moment Correlation Coefficien">
+alt="Pearson Product-Moment Correlation Coefficient">
 </div>
 <p align="center"><sub><b>Equation 1: Pearson Product-Moment Correlation Coefficient</sub></b></p>
+
+An underlying assumption of this statistic is that the underlying relationship between these two statistics is *linear*. However, this assumption of linearity is often not borne out in reality. Imagine we are assessing the relationship between the amount of money spent on ads targeting visitors of a given website, and the rate of conversion from visitor to paying customer. We could easyily imagine a scenario where, up to a certain point more resources spent on ads increases conversion. However, there may come a point where the prevalence of ads is so great from the consumer's perspective that it is actually offputting, accomplishing the opposite of its intended purpose. This scenario is not theoretical, but has been validated by [survey data](https://www.cmswire.com/cms/customer-experience/too-much-online-advertising-may-turn-consumers-off-survey-finds-014707.php, "Too Much Online Advertising May Turn Consumers Off, Survey Finds"). 
 
 
 
