@@ -55,7 +55,7 @@ alt="Euclidean Distance: Two Dimensions">
 However, in the example below *X* and *Y* are each univariate, and so the Euclidean distance reduces to the absolute value of distances.  
 
 <div align="center">
-<img src="https://github.com/b-knight/StatExplore/blob/master/images/https://github.com/b-knight/StatExplore/delete/master/images/Unidimensional_Euclidean_Distance.gif?sanitize=true",
+<img src="https://github.com/b-knight/StatExplore/blob/master/images/Unidimensional_Euclidean_Distance.gif?sanitize=true",
 align="middle", 
 alt="Euclidean Distance: Unidimensional">
 </div>
