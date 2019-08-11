@@ -38,6 +38,8 @@ alt="Pearson Product-Moment Correlation Coefficien">
 
 
 
+
+
 <div align="center">
 <img src="https://github.com/b-knight/StatExplore/blob/master/images/Distance_Correlation_Examples.png?sanitize=true",
 align="middle", 
@@ -49,7 +51,7 @@ alt="Sets of Distance Correlation Coefficients">
 
 
 
-
+#### Calculating the Distance Covariance 
 
 <div align="center">
 <img src="https://github.com/b-knight/StatExplore/blob/master/images/Pairwise_Distances.gif?sanitize=true",
@@ -194,6 +196,34 @@ alt="Squared Sample Distance Covariance">
 </div>
 <br>
 <p align="center"><sub><b>Equation 3: Squared Sample Distance Covariance</sub></b></p>
+
+We can manually do this in R via the 'matrixcalc' library. 
+```R
+arithmetic_average_of_products <- function(x_mat, y_mat) {
+  library(matrixcalc)
+  if ((nrow(x_mat) == nrow(y_mat)) & (ncol(x_mat) == ncol(y_mat))) {
+    val <- frobenius.prod(x_mat, y_mat)
+    return(val*(1/nrow(x_mat)^2))
+  }
+}
+```
+Finally, we take the square root of this result to get the sample distance covariance. If compare the results with R's ['energy' package](https://www.rdocumentation.org/packages/energy/versions/1.7-6/topics/distance%20correlation, "Energy"), we see that the results are the same:
+``` R
+> arithmetic_average_of_products(x_mat, y_mat)^(1/2)
+    0.438178
+> 
+> library(energy)
+> dcov.test(x, y, index = 1.0, R = NULL)
+
+	Specify the number of replicates R (R > 0) for an independence test
+
+data:  index 1, replicates 0
+nV^2 = 0.96, p-value = NA
+sample estimates:
+    dCov 
+    0.438178 
+```
+
 
 ### References
 * Szekely, G.J., Rizzo, M.L., and Bakirov, N.K. (2007), Measuring and Testing Dependence by Correlation of Distances, Annals of Statistics, Vol. 35 No. 6, pp. 2769-2794. http://dx.doi.org/10.1214/009053607000000505
