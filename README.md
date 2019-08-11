@@ -94,7 +94,7 @@ We will also need the column and row means from these distance matrices, as well
 ```
 take_doubly_centered_distances <- function(x_mat) {
     library(reshape2)
-    x_df               <- melt(as.matrix(x_mat), varnames = c("row", "col")) 
+    x_df               <- melt(as.matrix(x_mat), varnames = c("row", "col"))
     x_row_means        <- aggregate(x_df, list(x_df$row), mean)
     x_row_means        <- subset(x_row_means, select = -c(Group.1, col))
     names(x_row_means) <- c("row", "row_mean")
@@ -105,7 +105,13 @@ take_doubly_centered_distances <- function(x_mat) {
     x_df               <- merge(x=x_df, y=x_col_means, by="col")
     x_df$grand_mean    <- mean(c(x_row_means$row_mean, x_col_means$col_mean)) 
     x_df$X             <- x_df$value - x_df$row_mean - x_df$col_mean + x_df$grand_mean 
-    return(x_df)
+    x_df = x_df[with(x_df, order(col, row)), ]
+    myList <- list()
+    for (i in unique(x_df[["col"]])){
+      myList[[length(myList)+1]] <- x_df[x_df$col == i,]$X
+    }
+    output <- matrix(unlist(myList), ncol = length(unique(x_df[["col"]])), byrow = TRUE)
+    return(output)
     }
 ```
 ..resulting in the following:
@@ -177,7 +183,7 @@ The resulting matrices should have all rows and all columns sum to zero.
 </td></tr> </table>
 <p align="center"><sub><b>Tables 3 & 4: Distance Matrices After Doubly Centering</b></sub></p>
 
-Next, we need to take the arithmetic average of the products of the doubly centered matrices. The summed products is also referred to as the [Frobenius_inner_product](https://en.wikipedia.org/wiki/Frobenius_inner_product, "Frobenius Inner Product", which we subsequently multiply times 1 over n squared to yield the arithmetic average.
+Next, we need to take the arithmetic average of the products of the doubly centered matrices. The summed products is also referred to as the [Frobenius_inner_product](https://en.wikipedia.org/wiki/Frobenius_inner_product, "Wikipedia: Frobenius Inner Product"), which we subsequently multiply times 1 over n squared to yield the arithmetic average.
 
 <br>
 <div align="center">
