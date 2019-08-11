@@ -139,7 +139,6 @@ take_doubly_centered_distances <- function(x_mat) {
 We need to doubly center these distance matrices - doubly in this context means we will first subtract from each element its row mean, and secondly subtract its column mean before adding to each element the grand mean. 
 
 <br>
-<br>
 <div align="center">
 <img 
 src="https://github.com/b-knight/StatExplore/blob/master/images/Doubly_Centered_Distances.gif?sanitize=true", 
@@ -178,6 +177,15 @@ The resulting matrices should have all rows and all columns sum to zero.
 </td></tr> </table>
 <p align="center"><sub><b>Tables 3 & 4: Distance Matrices After Doubly Centering</b></sub></p>
 
+<br>
+<div align="center">
+<img 
+src="https://github.com/b-knight/StatExplore/blob/master/images/Squared_Sample_Distance_Covariance.gif?sanitize=true", 
+align="middle",
+alt="Squared Sample Distance Covariance">
+</div>
+<br>
+<p align="center"><sub><b>Equation 3: Squared Sample Distance Covariance</sub></b></p>
 
 ### References
 * Szekely, G.J., Rizzo, M.L., and Bakirov, N.K. (2007), Measuring and Testing Dependence by Correlation of Distances, Annals of Statistics, Vol. 35 No. 6, pp. 2769-2794. http://dx.doi.org/10.1214/009053607000000505
