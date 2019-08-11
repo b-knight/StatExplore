@@ -153,6 +153,7 @@ take_doubly_centered_distances <- function(x_mat) {
 We need to doubly center these distance matrices - doubly in this context means we will first subtract from each element its row mean, and secondly subtract its column mean before adding to each element the grand mean. 
 
 <br>
+<br>
 <div align="center">
 <img 
 src="https://github.com/b-knight/StatExplore/blob/master/images/Doubly_Centered_Distances.gif?sanitize=true", 
@@ -164,29 +165,29 @@ alt="Doubly Centered Distances">
 The resulting matrices should have all rows and all columns sum to zero.
 
 <table>
-<tr><th> Doubly Centered Distances </th></tr>
+<tr><th> X Doubly Centered Distances </th><th> Y Doubly Centered Distances </th></tr>
 
 <tr><td>
 
-| X               | A    | B    | C    | D    | E    | Row<br>Sum  |
-| --              | ---- | ---- | ---- | ---- | ---  | ----------- |
-| A               | -2.4 | -0.8 | 0.4  | 1.2  | 1.6  | 0           |
-| B               | -0.8 | -1.2 | 0    | 0.8  | 1.2  | 0           |
-| C               | 0.4  | 0    | -0.8 | 0    | 0.4  | 0           |
-| D               | 1.2  | 0.8  | 0    | -1.2 | -0.8 | 0           |
-| E               | 1.6  | 1.2  | 0.4  | -0.8 | -2.4 | 0           |
-| Column<br>Sum   | 0    | 0    | 0    | 0    | 0    |             |
+| X                        | A    | B    | C    | D    | E    | <sub>Row<br>Sum</sub>   |
+| ------------------------ | ---- | ---- | ---- | ---- | ---  | ----------------------- |
+| A                        | -2.4 | -0.8 | 0.4  | 1.2  | 1.6  | 0                       |
+| B                        | -0.8 | -1.2 | 0    | 0.8  | 1.2  | 0                       |
+| C                        | 0.4  | 0    | -0.8 | 0    | 0.4  | 0                       |
+| D                        | 1.2  | 0.8  | 0    | -1.2 | -0.8 | 0                       |
+| E                        | 1.6  | 1.2  | 0.4  | -0.8 | -2.4 | 0                       |
+| <sub>Column<br>Sum</sub> | 0    | 0    | 0    | 0    | 0    |                         |
 
 </td><td>
 
-| Y               | A    | B    | C    | D    | E    | Row<br>Sum  |
-| --              | ---- | ---- | ---- | ---- | ---- | ----------- |
-| A               | -0.8 | 0.4  | 0.8  | 0.4  | -0.8 | 0           |
-| B               | 0.4  | -0.4 | 0    | -0.4 | 0.4  | 0           |
-| C               | 0.8  | 0    | -1.6 | 0    | 0.8  | 0           |
-| D               | 0.4  | -0.4 | 0    | -0.4 | 0.4  | 0           |
-| E               | -0.8 | 0.4  | 0.8  | 0.4  | -0.8 | 0           |
-| Column<br>Sum   | 0    | 0    | 0    | 0    | 0    |             |
+| Y                        | A    | B    | C    | D    | E    | <sub>Row<br>Sum</sub>  |
+| ------------------------ | ---- | ---- | ---- | ---- | ---- | ---------------------- |
+| A                        | -0.8 | 0.4  | 0.8  | 0.4  | -0.8 | 0                      |
+| B                        | 0.4  | -0.4 | 0    | -0.4 | 0.4  | 0                      |
+| C                        | 0.8  | 0    | -1.6 | 0    | 0.8  | 0                      |
+| D                        | 0.4  | -0.4 | 0    | -0.4 | 0.4  | 0                      |
+| E                        | -0.8 | 0.4  | 0.8  | 0.4  | -0.8 | 0                      |
+| <sub>Column<br>Sum</sub> | 0    | 0    | 0    | 0    | 0    |                        |
 
 </td></tr> </table>
 <p align="center"><sub><b>Tables 4 & 5: Distance Matrices After Doubly Centering</b></sub></p>
