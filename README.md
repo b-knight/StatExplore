@@ -180,7 +180,7 @@ The resulting matrices should have all rows and all columns sum to zero.
 </td></tr> </table>
 <p align="center"><sub><b>Tables 3 & 4: Distance Matrices After Doubly Centering</b></sub></p>
 
-Next, we need to take the arithmetic average of the products of the doubly centered matrices. The summed products is also referred to as the [Frobenius_inner_product](https://en.wikipedia.org/wiki/Frobenius_inner_product, "Wikipedia: Frobenius Inner Product"), which we subsequently multiply times 1 over n squared to yield the arithmetic average.
+Next, we need to take the arithmetic average of the products of the doubly centered matrices. The summed products is also referred to as the [Frobenius inner product](https://en.wikipedia.org/wiki/Frobenius_inner_product, "Wikipedia: Frobenius Inner Product"), which we subsequently multiply times 1 over n squared to yield the arithmetic average.
 
 <br>
 <div align="center">
